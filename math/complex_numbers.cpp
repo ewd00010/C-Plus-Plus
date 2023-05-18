@@ -1,21 +1,24 @@
 /**
- * @author tjgurwara99
  * @file
  *
- * \brief An implementation of Complex Number as Objects
- * \details A basic implementation of Complex Number field as a class with
+ * @brief An implementation of Complex Number as Objects
+ *
+ * @details A basic implementation of Complex Number field as a class with
  * operators overloaded to accommodate (mathematical) field operations.
+ * https://en.wikipedia.org/wiki/Complex_number
+ *
+ * @author [tjgurwara99](https://github.com/tjgurwara99)
  */
 
-#include <cassert>
+#include <cassert> // for assert
 #include <cmath>
 #include <complex>
 #include <ctime>
-#include <iostream>
+#include <iostream> // for cout
 #include <stdexcept>
 
 /**
- * \brief Class Complex to represent complex numbers as a field.
+ * @brief Class Complex to represent complex numbers as a field.
  */
 class Complex {
     // The real value of the complex number
@@ -25,8 +28,8 @@ class Complex {
 
  public:
     /**
-     * \brief Complex Constructor which initialises our complex number.
-     * \details
+     * @brief Complex Constructor which initialises our complex number.
+     * @details
      * Complex Constructor which initialises the complex number which takes
      * three arguments.
      * @param x If the third parameter is 'true' then this x is the absolute
@@ -37,7 +40,7 @@ class Complex {
      * imaginary value of the complex number (optional).
      * @param is_polar 'false' by default. If we want to initialise our complex
      * number using polar form then set this to true, otherwise set it to false
-     * to use initialiser which initialises real and imaginary values using the
+     * to use initializer which initialises real and imaginary values using the
      * first two parameters (optional).
      */
     explicit Complex(double x = 0.f, double y = 0.f, bool is_polar = false) {
@@ -52,25 +55,25 @@ class Complex {
     }
 
     /**
-     * \brief Copy Constructor
+     * @brief Copy Constructor
      * @param other The other number to equate our number to.
      */
     Complex(const Complex &other) : re(other.real()), im(other.imag()) {}
 
     /**
-     * \brief Member function to get real value of our complex number.
+     * @brief Member function to get real value of our complex number.
      * Member function (getter) to access the class' re value.
      */
     double real() const { return this->re; }
 
     /**
-     * \brief Member function to get imaginary value of our complex number.
+     * @brief Member function to get imaginary value of our complex number.
      * Member function (getter) to access the class' im value.
      */
     double imag() const { return this->im; }
 
     /**
-     * \brief Member function to give the modulus of our complex number.
+     * @brief Member function to give the modulus of our complex number.
      * Member function to which gives the absolute value (modulus) of our
      * complex number
      * @return \f$ \sqrt{z \bar{z}} \f$ where \f$ z \f$ is our complex
@@ -81,13 +84,13 @@ class Complex {
     }
 
     /**
-     * \brief Member function to give the argument of our complex number.
+     * @brief Member function to give the argument of our complex number.
      * @return Argument of our Complex number in radians.
      */
     double arg() const { return std::atan2(this->im, this->re); }
 
     /**
-     * \brief Operator overload of '+' on Complex class.
+     * @brief Operator overload of '+' on Complex class.
      * Operator overload to be able to add two complex numbers.
      * @param other The other number that is added to the current number.
      * @return result current number plus other number
@@ -98,7 +101,7 @@ class Complex {
     }
 
     /**
-     * \brief Operator overload of '-' on Complex class.
+     * @brief Operator overload of '-' on Complex class.
      * Operator overload to be able to subtract two complex numbers.
      * @param other The other number being subtracted from the current number.
      * @return result current number subtract other number
@@ -109,7 +112,7 @@ class Complex {
     }
 
     /**
-     * \brief Operator overload of '*' on Complex class.
+     * @brief Operator overload of '*' on Complex class.
      * Operator overload to be able to multiple two complex numbers.
      * @param other The other number to multiply the current number to.
      * @return result current number times other number.
@@ -121,7 +124,7 @@ class Complex {
     }
 
     /**
-     * \brief Operator overload of '~' on Complex class.
+     * @brief Operator overload of '~' on Complex class.
      * Operator overload of the BITWISE NOT which gives us the conjugate of our
      * complex number. NOTE: This is overloading the BITWISE operator but its
      * not a BITWISE operation in this definition.
@@ -133,7 +136,7 @@ class Complex {
     }
 
     /**
-     * \brief Operator overload of '/' on Complex class.
+     * @brief Operator overload of '/' on Complex class.
      * Operator overload to be able to divide two complex numbers. This function
      * would throw an exception if the other number is zero.
      * @param other The other number we divide our number by.
@@ -153,7 +156,7 @@ class Complex {
     }
 
     /**
-     * \brief Operator overload of '=' on Complex class.
+     * @brief Operator overload of '=' on Complex class.
      * Operator overload to be able to copy RHS instance of Complex to LHS
      * instance of Complex
      */
@@ -165,7 +168,7 @@ class Complex {
 };
 
 /**
- * \brief Operator overload of '==' on Complex class.
+ * @brief Operator overload of '==' on Complex class.
  * Logical Equal overload for our Complex class.
  * @param a Left hand side of our expression
  * @param b Right hand side of our expression
@@ -177,7 +180,7 @@ bool operator==(const Complex &a, const Complex &b) {
 }
 
 /**
- * \brief Operator overload of '<<' of ostream for Complex class.
+ * @brief Operator overload of '<<' of ostream for Complex class.
  * Overloaded insersion operator to accommodate the printing of our complex
  * number in their standard form.
  * @param os The console stream
@@ -195,13 +198,15 @@ std::ostream &operator<<(std::ostream &os, const Complex &num) {
 }
 
 /**
- * \brief Function to get random numbers to generate our complex numbers for
+ * @brief Function to get random numbers to generate our complex numbers for
  * test
+ * @returns random number
  */
 double get_rand() { return (std::rand() % 100 - 50) / 100.f; }
 
 /**
- * Tests Function
+ * @brief Tests Function
+ * @returns void
  */
 void tests() {
     std::srand(std::time(nullptr));
@@ -217,7 +222,6 @@ void tests() {
                   "add up \n",
             (result.real() == expected.real() &&
              result.imag() == expected.imag())));
-    std::cout << "First test passes." << std::endl;
     // Test for subtraction
     result = num1 - num2;
     expected = cnum1 - cnum2;
@@ -225,7 +229,6 @@ void tests() {
                   "otherwise. \n",
             (result.real() == expected.real() &&
              result.imag() == expected.imag())));
-    std::cout << "Second test passes." << std::endl;
     // Test for multiplication
     result = num1 * num2;
     expected = cnum1 * cnum2;
@@ -233,7 +236,6 @@ void tests() {
                   "otherwise. \n",
             (result.real() == expected.real() &&
              result.imag() == expected.imag())));
-    std::cout << "Third test passes." << std::endl;
     // Test for division
     result = num1 / num2;
     expected = cnum1 / cnum2;
@@ -241,7 +243,6 @@ void tests() {
                   "otherwise.\n",
             (result.real() == expected.real() &&
              result.imag() == expected.imag())));
-    std::cout << "Fourth test passes." << std::endl;
     // Test for conjugates
     result = ~num1;
     expected = std::conj(cnum1);
@@ -249,21 +250,20 @@ void tests() {
                   "program says otherwise.\n",
             (result.real() == expected.real() &&
              result.imag() == expected.imag())));
-    std::cout << "Fifth test passes.\n";
     // Test for Argument of our complex number
     assert(((void)"(1 + 1i) has argument PI / 4 but the program differs from "
                   "the std::complex result.\n",
             (num1.arg() == std::arg(cnum1))));
-    std::cout << "Sixth test passes.\n";
     // Test for absolute value of our complex number
     assert(((void)"(1 + 1i) has absolute value sqrt(2) but the program differs "
                   "from the std::complex result. \n",
             (num1.abs() == std::abs(cnum1))));
-    std::cout << "Seventh test passes.\n";
+    std::cout << "all tests passed" << std::endl;
 }
 
 /**
- * Main function
+ * @brief Main function
+ * @returns 0 on exit
  */
 int main() {
     tests();
