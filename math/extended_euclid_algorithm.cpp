@@ -28,8 +28,8 @@ namespace math {
     * @param r0
     * @param quotient
     */
-    inline void update_step(u_int64_t *r, u_int64_t *r0, const u_int64_t quotient) {
-        u_int64_t temp = *r;
+    inline void update_step(uint64_t *r, uint64_t *r0, const uint64_t quotient) {
+        uint64_t temp = *r;
         *r = *r0 - (quotient * temp);
         *r0 = temp;
     }
@@ -43,16 +43,16 @@ namespace math {
     * @param x
     * @param y
     */
-    void extendedEuclid_1(u_int64_t A, u_int64_t B, u_int64_t *GCD, int64_t*x, int64_t *y) {
+    void extendedEuclid_1(uint64_t A, uint64_t B, uint64_t *GCD, int64_t*x, int64_t *y) {
         if (B > A)
             std::swap(A, B);  // Ensure that A >= B
 
-        u_int64_t s = 0, s0 = 1;
-        u_int64_t t = 1, t0 = 0;
-        u_int64_t r = B, r0 = A;
+        uint64_t s = 0, s0 = 1;
+        uint64_t t = 1, t0 = 0;
+        uint64_t r = B, r0 = A;
 
         while (r != 0) {
-            u_int64_t quotient = r0 / r;
+            uint64_t quotient = r0 / r;
             update_step(&r, &r0, quotient);
             update_step(&s, &s0, quotient);
             update_step(&t, &t0, quotient);
@@ -70,7 +70,7 @@ namespace math {
     * @param x
     * @param y
     */
-    void extendedEuclid(u_int64_t A, u_int64_t B, u_int64_t *GCD, int64_t *x, int64_t *y) {
+    void extendedEuclid(uint64_t A, uint64_t B, uint64_t *GCD, int64_t *x, int64_t *y) {
         if (B > A)
             std::swap(A, B);  // Ensure that A >= B
 
@@ -92,7 +92,7 @@ namespace math {
  * @returns void
  */
 static void tests(){
-    assert(NULL);
+    assert(true);
 }
 
 /**
@@ -101,7 +101,7 @@ static void tests(){
  */
 int main() {
     tests();
-    u_int64_t a, b, gcd;
+    uint64_t a, b, gcd;
     int64_t x, y;
     std::cin >> a >> b;
     math::extendedEuclid(a, b, &gcd, &x, &y);
